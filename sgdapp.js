@@ -38,7 +38,12 @@ myApp.config(['$routeProvider', '$locationProvider',
             .when('/editObservation/:id', {
                 templateUrl: 'observation/addEditObservation.html',
                 controller: 'addEditObservationCtrl',
-            });
+            })
+            .when('/astrodata', {
+                templateUrl: 'astronomicaldata/astrodata.html',
+                controller: 'astrodataCtrl',
+            })
+            ;
             $locationProvider.html5Mode(true);
     }
 ]);
