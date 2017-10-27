@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Register</h2>
+  <div ng-if="registrationSuccessMessage" class="alert alert-success" role="alert">
+      {{registrationSuccessMessage}}
+  </div>
+    <div ng-if="registrationFailedMessage" class="alert alert-danger" role="alert">
+      {{registrationFailedMessage}}
+  </div>
+
+  <div ng-if="!registrationSuccessMessage">
+    <form name="form">
+      <div class="form-group">
+        <label for="name">User Name</label>
+        <input type="text" id="username" name="username" class="form-control"
+            ng-model="identifiers.name" placeholder="Your Username" required>
+        <span class="help-block" ng-if="form.username.$invalid && form.username.$touched">
+            Please enter a user name!</span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control"
+            ng-model="identifiers.password" placeholder="Your Password" required>
+        <span class="help-block" ng-if="from.password.$invalid && form.password.touched">
+            Please enter a password!</span>
+      </div>
+      <button class="btn btn-primary" type="submit" ng-click="submit()" ng-disabled="form.$invalid">Register</button>
+    </form>
+  </div>
+</div>

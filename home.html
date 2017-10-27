@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>Hi {{username}}, you are on the AngularJS frontend for the Stargazer Diary web application</h1>
+    <div ng-if="!loggedIn">
+    <a class="btn btn-success" href="/login">Login</a>
+    <a class="btn btn-primary" href="/register">Register</a>
+  </div>
+  <div ng-if="loggedIn">
+    <a class="btn btn-warning" ng-click="logout()" style="cursor: pointer">Logout</a>
+  </div>
+</div>
