@@ -47,16 +47,16 @@
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li>
+						<li ng-class="activeItemClass('')">
 							<a href="/">Home</a>
 						</li>
-						<li>
+						<li ng-class="activeItemClass('telescope')">
 							<a href="/telescopes">My telescopes</a>
 						</li>
-						<li>
+						<li ng-class="activeItemClass('obs')">
               				<a href="/observations">My observations</a>
            				</li>
-						<li>
+						<li ng-class="activeItemClass('astro')">
               				<a href="/astrodata">Astronomical Data</a>
             			</li>
 					</ul>

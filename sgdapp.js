@@ -106,4 +106,14 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $location,
         }
       );
     }
+
+    $scope.activeItemClass = function (item) {
+        if(item === '' && $location.path() !== '/'){
+            // Special case for home, otherwise the Home item
+            // will always be active
+            return "";
+        }
+        currentItem = $location.path().toLowerCase().includes(item.toLowerCase());
+        return currentItem ? "active" : "";
+    };
 })
