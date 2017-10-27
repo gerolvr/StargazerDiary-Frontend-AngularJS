@@ -48,6 +48,26 @@ myApp.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
+myApp.value('urlRedirectionAfterLogin', { redirect: false, url: '/' } );
+
+myApp.run(function($rootScope, $location, urlRedirectionAfterLogin) {
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+      if ($rootScope.loggedIn === false) {
+        // User is not logged in, redirect to /login for any
+        // location except for those authentication is not required
+        if ( next.templateUrl === "home.html"
+            || next.templateUrl === "login/login.html"
+            || next.templateUrl === "registration/registration.html") {
+        } else {
+            // Save current url to redirect the user after login
+            urlRedirectionAfterLogin.redirect = true;
+            urlRedirectionAfterLogin.url = $location.path();
+            $location.path("/login");
+        }
+      }
+    });
+ });
+
 myApp.controller('mainCtrl', function ($scope, $rootScope, $location,
   LoginService, localStorageTokenKey, localStorageUsernameKey) {
 

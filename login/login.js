@@ -1,6 +1,6 @@
 var myApp = angular.module('StargazerDiaryAngularJsApp');
 myApp.controller('loginCtrl', function($scope, $rootScope, $http, $location,
-    LoginService, localStorageTokenKey, localStorageUsernameKey){
+    LoginService, localStorageTokenKey, localStorageUsernameKey, urlRedirectionAfterLogin){
 
     $rootScope.loggedIn = false;
     $rootScope.username = '';
@@ -15,7 +15,12 @@ myApp.controller('loginCtrl', function($scope, $rootScope, $http, $location,
                 $rootScope.loggedIn = true;
                 $rootScope.username = $scope.identifiers.username;
                 $scope.authenticationFailed = false;
-                $location.path('/');
+                if(urlRedirectionAfterLogin.redirect) {
+                    urlRedirectionAfterLogin.redirect = false;
+                    $location.path(urlRedirectionAfterLogin.url);    
+                } else {
+                    $location.path('/');
+                }
             }, function (error){
                 $scope.authenticationFailed = true;
             }
