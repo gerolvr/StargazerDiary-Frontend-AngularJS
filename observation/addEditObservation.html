@@ -1,0 +1,39 @@
+<div class="container" ng-controller="addEditObservationCtrl">
+  <h1>{{header}}</h1>
+  <form class="form-horizontal" name="form">
+    <div class="form-group">
+      <label for="inputObservationName" class="col-sm-2 control-label">Observation Name*</label>
+      <div class="col-sm-10">
+        <input type="text"
+          ng-model="observation.name"
+          class="form-control" name="observationName" id="observationName" placeholder="Observation Name"
+          required/>
+          <span class="help-block" ng-if="form.observationName.$invalid && form.observationName.$touched 
+                || (form.observationName && form.observationName.trim().length === 0)">Please enter an observation name.</span>
+      </div>
+    </div>
+    <div class="form-group">
+    <label for="inputObservationMaker" class="col-sm-2 control-label">Observation Date</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="observation.date" name="date" class="form-control" id="datepicker" size="30" placeholder="Observation Date"/>
+    <script>
+	    $( function() {
+		    $( "#datepicker" ).datepicker();
+	      	$( "#datepicker" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+	  	} );
+    </script>
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="inputObservationReport" class="col-sm-2 control-label">Observation Report</label>
+      <div class="col-sm-10">
+        <textarea name="report" class="form-control" ng-model="observation.report" rows="3" placeholder="Observation report"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-primary" type="submit" ng-click="submit(form)" ng-disabled="form.$invalid || (form.value.observationName && form.value.observationName.trim().length === 0)">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

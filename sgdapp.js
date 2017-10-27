@@ -14,6 +14,30 @@ myApp.config(['$routeProvider', '$locationProvider',
             .when('/register', {
                 templateUrl: 'registration/registration.html',
                 controller: 'registrationCtrl',
+            })
+            .when('/telescopes', {
+                templateUrl: 'telescope/telescopeList.html',
+                controller: 'telescopeListCtrl',
+            })
+            .when('/addTelescope', {
+                templateUrl: 'telescope/addEditTelescope.html',
+                controller: 'addEditTelescopeCtrl',
+            })
+            .when('/editTelescope/:id', {
+                templateUrl: 'telescope/addEditTelescope.html',
+                controller: 'addEditTelescopeCtrl',
+            })
+            .when('/observations', {
+                templateUrl: 'observation/observationList.html',
+                controller: 'observationListCtrl',
+            })
+            .when('/addObservation', {
+                templateUrl: 'observation/addEditObservation.html',
+                controller: 'addEditObservationCtrl',
+            })
+            .when('/editObservation/:id', {
+                templateUrl: 'observation/addEditObservation.html',
+                controller: 'addEditObservationCtrl',
             });
             $locationProvider.html5Mode(true);
     }

@@ -1,0 +1,27 @@
+    <div class="container" ng-controller="telescopeListCtrl">
+        <h1>My telescopes</h1>
+        <table class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Maker</th>
+                <th>Model</th>
+                <th>Features</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="telescope in telescopes">
+                <td>{{telescope.name}}</td>
+                <td>{{telescope.maker}}</td>
+                <td>{{telescope.model}}</td>
+                <td>{{telescope.features}}</td>
+                <td>{{telescope.telescopeType}}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" ng-href="/editTelescope/{{telescope.id}}" style="cursor: pointer">Edit</a>
+                        <a class="btn btn-warning" ng-click="onSelectDelete(telescope)" style="cursor: pointer">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-success" href="/addTelescope">Add a telescope</a>
+    </div>
