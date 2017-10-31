@@ -50,9 +50,10 @@ myApp.config(['$routeProvider', '$locationProvider',
 
 myApp.value('urlRedirectionAfterLogin', { redirect: false, url: '/' } );
 
-myApp.run(function($rootScope, $location, urlRedirectionAfterLogin) {
+myApp.run(function($rootScope, $location,
+        urlRedirectionAfterLogin, localStorageTokenKey, localStorageUsernameKey) {
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-      if ($rootScope.loggedIn === false) {
+      if (checkLocalStorageDoesNotContainSession(localStorageTokenKey, localStorageUsernameKey)) {
         // User is not logged in, redirect to /login for any
         // location except for those authentication is not required
         if ( next.templateUrl === "home.html"
@@ -68,14 +69,18 @@ myApp.run(function($rootScope, $location, urlRedirectionAfterLogin) {
     });
  });
 
+checkLocalStorageDoesNotContainSession = function(localStorageTokenKey, localStorageUsernameKey){
+    return (localStorage.getItem(localStorageTokenKey) === null || localStorage.getItem(localStorageTokenKey).length ===0
+      || localStorage.getItem(localStorageUsernameKey) === null || localStorage.getItem(localStorageUsernameKey).length ===0);
+}
+
 myApp.controller('mainCtrl', function ($scope, $rootScope, $location,
   LoginService, localStorageTokenKey, localStorageUsernameKey) {
 
     $rootScope.username = '';
     $rootScope.loggedIn = false;
 
-    if(localStorage.getItem(localStorageTokenKey) === null || localStorage.getItem(localStorageTokenKey).length ===0
-      || localStorage.getItem(localStorageUsernameKey) === null || localStorage.getItem(localStorageUsernameKey).length ===0)
+    if(checkLocalStorageDoesNotContainSession(localStorageTokenKey,localStorageUsernameKey))
     {
       // Not logged in anymore, clean up stored data
       LoginService.onLogoutSuccess();
@@ -90,8 +95,9 @@ myApp.controller('mainCtrl', function ($scope, $rootScope, $location,
         function (error) {
           console.log('CheckSession failed');
           console.log(error);
-          // Not logged in anymore, clean up stored data
+          // Not logged in anymore, clean up stored data bad redirect to homepage
           LoginService.onLogoutSuccess();
+          $location.path('/');
         }
       );
     }
