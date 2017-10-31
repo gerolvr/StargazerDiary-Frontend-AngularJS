@@ -31,7 +31,7 @@ myApp.service('TelescopeService', function ($http, baseUrl, localStorageTokenKey
     }
 
     this.deleteTelescope = function (telescopeId){
-        return $http.get(baseTelescopeUrl + '/delete/' + telescopeId, {
+        return $http.delete(baseTelescopeUrl + '/delete/' + telescopeId, {
             headers: {
                 'x-auth-token': localStorage.getItem(localStorageTokenKey)
             },

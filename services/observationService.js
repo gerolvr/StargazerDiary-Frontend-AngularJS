@@ -31,7 +31,7 @@ myApp.service('ObservationService', function($http, baseUrl, localStorageTokenKe
     }
 
     this.deleteObservation = function (observationId){
-        return $http.get(baseObservationUrl + '/delete/' + observationId, {
+        return $http.delete(baseObservationUrl + '/delete/' + observationId, {
             headers: {
                 'x-auth-token': localStorage.getItem(localStorageTokenKey)
             },
