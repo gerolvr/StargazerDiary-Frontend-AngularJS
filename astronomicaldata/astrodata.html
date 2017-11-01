@@ -24,7 +24,7 @@
     <div ng-if="!searchStarted && searchCompletedSuccessfully">
         <h1>{{astroDataSearchResult.astroObjectName}},  {{astroDataSearchResult.astroObjectType}}</h1>
         <p style="white-space: pre-line">{{astroDataSearchResult.astroObjectCoordinates}}</p>
-		<p>Use Mouse left-click+move to move the maps and the scrollwheel to zoom in/out</p>
+		<p>Use Mouse left-click+move to move the maps and the scrollwheel to zoom in/out. If the object is not visible, try to zoom in several times</p>
 		  <iframe width="80%" height="400" frameborder="0" scrolling="no"
 			marginheight="0" marginwidth="0" ng-src="{{astroDataSearchResult.planetariumUrl | trustedUrl}}"
 			allowtransparency="true"></iframe>
